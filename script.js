@@ -5,13 +5,14 @@ document.body.appendChild(getSumBtn);
 const getSum = () => {
   const priceElements = document.querySelectorAll(".price");
   let total = 0;
+
   priceElements.forEach(priceElement => {
     total += parseInt(priceElement.textContent);
   });
 
   const existingTotalRow = document.querySelector(".total-row");
   if (existingTotalRow) {
-    existingTotalRow.textContent = `Total Price: Rs ${total}`;
+    existingTotalRow.querySelector("#ans").textContent = `Total Price: Rs ${total}`;
   } else {
     const table = document.querySelector("table");
     const totalRow = document.createElement("tr");
@@ -19,6 +20,7 @@ const getSum = () => {
 
     const totalCell = document.createElement("td");
     totalCell.colSpan = 2;
+    totalCell.id = "ans"; // Add ID for test case compatibility
     totalCell.textContent = `Total Price: Rs ${total}`;
     totalRow.appendChild(totalCell);
 
@@ -27,4 +29,3 @@ const getSum = () => {
 };
 
 getSumBtn.addEventListener("click", getSum);
-
